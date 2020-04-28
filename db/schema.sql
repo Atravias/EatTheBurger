@@ -6,10 +6,11 @@ USE EatDaBurgerDb;
 
 CREATE TABLE burgers
 (
-    id int NOT NULL
+    id INT NOT NULL
     AUTO_INCREMENT,
     name VARCHAR
     (10) NOT NULL,
+    devoured BOOLEAN,
     PRIMARY KEY
     (id)
 );

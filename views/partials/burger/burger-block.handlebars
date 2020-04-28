@@ -1,0 +1,42 @@
+<script>
+    function eat(event) {
+        var id = $(event.target).data("id")
+        var devoured = $(event.target).data("devoured")
+
+        var devouredState = {
+            devoured
+        }
+
+        $.ajax("/api/burger/" + id, {
+            type: "PUT",
+            data: devouredState
+        }).then(function (result) {
+            console.log("Burger devoured", result)
+            location.reload();
+        });
+    }
+</script>
+
+<tr>
+    <td scope="col">{{this.id}}</td>
+    <td scope="col">{{this.name}}</td>
+    <td scope="col">
+
+        {{#if devoured}}
+        {{>button
+        onclick="onclick='eat(event)'"
+            type="Submit" 
+            color="primary" 
+            value="Order"
+            }}
+        {{else}}
+        {{>button
+            onclick="onclick='eat(event)'"
+        type="Submit"
+        color="danger"
+        value="EAT"
+        }}
+        {{/if}}
+
+    </td>
+</tr>

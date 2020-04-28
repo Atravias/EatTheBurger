@@ -2,17 +2,46 @@
 
 <h3>Choose which burger you want to devour!</h3>
 
-<ul>
-    {{#each tasks}}
-    <li>
-        <p>ID: {{this.id}}</p>
-        <p>burger: {{this.burger}}</p>
-    </li>
-    {{/each}}
-</ul>
 
-<form action="/" method="POST">
-    <textarea type="text" name="task"></textarea>
+<table class="table table-dark col-md-4">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Devour!</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each burgers}}
+        {{#unless devoured}}
+        {{>burger/burger-block}}
+        {{/unless}}
+        {{/each}}
+    </tbody>
+</table>
 
-    <button type="submit">Submit</button>
+<table class="table table-dark col-md-4">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Devour!</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each burgers}}
+        {{#if devoured}}
+        {{>burger/burger-block}}
+        {{/if}}
+        {{/each}}
+    </tbody>
+</table>
+
+
+<form>
+    <div class="form-group">
+        <label for="burger-name">Create A Custom Burger</label>
+        <input type="text" class="form-control" id="new-burger" aria-describedby="new-burger">
+    </div>
+    <button type="submit" class="btn btn-primary" id="add-burger">Add Burger</button>
 </form>
